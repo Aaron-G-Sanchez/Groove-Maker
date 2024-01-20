@@ -34,13 +34,34 @@ body {
   justify-content: center;
 }
 
+.transport-controls {
+  background-color: var(--grid-background);
+  height: 15%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* gap is temp */
+  gap: 2%;
+}
+
+.btn {
+  background-color: var(--main-accent);
+  width: calc(100% / 16 - 2%);
+  aspect-ratio: 1/1;
+}
+
+.timer-display {
+  color: var(--main-accent);
+}
+
 .grid-container {
   background-color: var(--grid-background);
   width: 100%;
   height: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .step {
