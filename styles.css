@@ -31,4 +31,11 @@ body {
   background-color: white;
   flex-grow: 1;
   aspect-ratio: 1 / 1;
+  transition: .2s;
 }
+
+.active {
+  background-color: green;
+  transition: .2s;
+}
+

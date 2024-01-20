@@ -1,6 +1,6 @@
-// GRID
 let root = document.querySelector('.root')
 
+// GRID
 const stepCount = 16
 
 const gridContainer = document.createElement('div')
