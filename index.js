@@ -3,8 +3,7 @@ let root = document.querySelector('.root')
 // TIMER WIP
 
 let start = 0
-
-console.log(start)
+let timerId
 
 // GRID
 const stepCount = 16
@@ -21,25 +20,45 @@ transportControls.classList.add('transport-controls')
 
 controlsContainer.appendChild(transportControls)
 
+// Play button
 const playButton = document.createElement('div')
 playButton.classList.add('play-btn')
 playButton.classList.add('btn')
+playButton.innerHTML = 'play'
 
+// Stop button
+const stopButton = document.createElement('div')
+stopButton.classList.add('stop-btn')
+stopButton.classList.add('btn')
+stopButton.innerHTML = 'stop'
+
+// Timer display
 let timer = document.createElement('p')
 timer.classList.add('timer-display')
 
 timer.innerHTML = start
 
 transportControls.appendChild(playButton)
+transportControls.appendChild(stopButton)
 transportControls.appendChild(timer)
 
+// Click events to start and stop the timer
+// Start timer
 playButton.addEventListener('click', () => {
-  // Replace start with a timer function
-  start++
+  if (!timerId) {
+    timerId = setInterval(() => {
+      // Replace start with a timer function
+      start++
+      // Reset the content of the timer <p> tag
+      timer.innerHTML = start
+    }, 1000)
+  }
+})
 
-  // Reset the content of the timer <p> tag
-  let updatedTimer = document.querySelector('.timer-display')
-  updatedTimer.innerHTML = start
+// Stop timer
+stopButton.addEventListener('click', () => {
+  clearInterval(timerId)
+  timerId = null
 })
 
 // Grid controlls container
