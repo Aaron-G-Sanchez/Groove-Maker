@@ -45,15 +45,24 @@ transportControls.appendChild(timer)
 // Click events to start and stop the timer
 // Start timer
 playButton.addEventListener('click', () => {
+  // Need to mess with the timing and the class list of the
+  // steps
+  if (start === 0) {
+    start = 1
+    timer.innerHTML = start
+    if (stepList[start - 1].classList.contains('active')) {
+      console.log('ON!', start)
+    }
+  }
   if (!timerId) {
+    // Replace start with a timer function
     timerId = setInterval(() => {
-      if (stepList[start].classList.contains('active')) {
-        console.log('ON')
-      }
-      // Replace start with a timer function
       start++
       // Reset the content of the timer <p> tag
       timer.innerHTML = start
+      if (stepList[start - 1].classList.contains('active')) {
+        console.log('ON', start)
+      }
 
       // Looping through the node list of steps
     }, 1000)
