@@ -47,10 +47,15 @@ transportControls.appendChild(timer)
 playButton.addEventListener('click', () => {
   if (!timerId) {
     timerId = setInterval(() => {
+      if (stepList[start].classList.contains('active')) {
+        console.log('ON')
+      }
       // Replace start with a timer function
       start++
       // Reset the content of the timer <p> tag
       timer.innerHTML = start
+
+      // Looping through the node list of steps
     }, 1000)
   }
 })
@@ -72,7 +77,7 @@ const toggleBeat = (target) => {
   target.classList.toggle('active')
 }
 
-// Individual steps
+// Creating individual steps
 for (let i = 1; i <= stepCount; i++) {
   let step = document.createElement('div')
   step.classList.add('step')
@@ -80,3 +85,7 @@ for (let i = 1; i <= stepCount; i++) {
   step.addEventListener('click', () => toggleBeat(step))
   gridContainter.appendChild(step)
 }
+
+// Reading node list of steps
+// Need to look through nodelist and check if has the "active" class
+let stepList = document.getElementsByClassName('step')
