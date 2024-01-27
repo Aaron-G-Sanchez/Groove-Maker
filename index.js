@@ -3,9 +3,9 @@ let root = document.querySelector('.root')
 // TIMER WIP
 let start = 0
 let timerId
-let loopActive = false
 
-const loop = () => {
+// Start loop
+const startLoop = () => {
   // Handle when the startbutton is initially clicked
   if (start === 0) {
     start = 1
@@ -18,7 +18,11 @@ const loop = () => {
   // If no timer exists then create one
   if (!timerId) {
     timerId = setInterval(() => {
-      start++
+      if (start < 16) {
+        start++
+      } else {
+        start = 1
+      }
       // Reset the content of the timer <p> tag
       timer.innerHTML = start
       if (stepList[start - 1].classList.contains('active')) {
@@ -26,6 +30,13 @@ const loop = () => {
       }
     }, 1000)
   }
+}
+
+// End loop
+
+const endLoop = () => {
+  clearInterval(timerId)
+  timerId = null
 }
 
 // GRID
@@ -67,13 +78,10 @@ transportControls.appendChild(timer)
 
 // Click events to start and stop the timer
 // Start timer
-playButton.addEventListener('click', loop)
+playButton.addEventListener('click', startLoop)
 
 // Stop timer
-stopButton.addEventListener('click', () => {
-  clearInterval(timerId)
-  timerId = null
-})
+stopButton.addEventListener('click', endLoop)
 
 // Grid controlls container
 const gridContainter = document.createElement('div')
