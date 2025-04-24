@@ -28,7 +28,7 @@ const startLoop = () => {
       if (stepList[start - 1].classList.contains('active')) {
         console.log('ON', start)
       }
-    }, 1000)
+    }, 1000) // <-- Eventually need to put the BPM here
   }
 }
 
