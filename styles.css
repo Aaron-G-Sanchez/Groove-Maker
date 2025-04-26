@@ -1,78 +1,14 @@
-:root {
-  --main-background: #586b73;
-  --grid-background: #283337;
-  --main-accent: #bdd0d8;
-  --secondary-accent: #e37a7c;
-}
-
 * {
   margin: 0;
-  padding: 0;
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--main-background);
+  height: 100lvh;
+  width: 100lvw;
 }
 
 .root {
-  width: 100%;
-  height: 100%;
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 }
-
-.controls-container {
-  background-color: var(--main-accent);
-  width: 100%;
-  height: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.transport-controls {
-  background-color: var(--grid-background);
-  height: 15%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* gap is temp */
-  gap: 2%;
-}
-
-.btn {
-  background-color: var(--main-accent);
-  width: calc(100% / 16 - 2%);
-  aspect-ratio: 1/1;
-}
-
-.timer-display {
-  color: var(--main-accent);
-}
-
-.grid-container {
-  background-color: var(--grid-background);
-  width: 100%;
-  height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.step {
-  background-color: var(--main-accent);
-  width: calc(100% / 16 - 2%);
-  aspect-ratio: 1 / 1;
-  transition: .2s;
-}
-
-.active {
-  background-color: var(--secondary-accent);
-  transition: .2s;
-}
-
