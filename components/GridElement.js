@@ -34,4 +34,6 @@ export class GridElement extends HTMLElement {
   connectedCallback() {
     console.log('Grid component added to page!')
   }
+
+  // TODO: Get buttons to act as toggles when clicked.
 }
