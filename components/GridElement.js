@@ -1,24 +1,30 @@
 const gridTemplate = () =>
   `
     <div class='grid-container'>
-      <button class='pad btn0'></button>
-      <button class='pad btn1'></button>
-      <button class='pad btn2'></button>
-      <button class='pad btn3'></button>
-      <button class='pad btn4'></button>
-      <button class='pad btn5'></button>
-      <button class='pad btn6'></button>
-      <button class='pad btn7'></button>
+      <button class='pad step-0'></button>
+      <button class='pad step-1'></button>
+      <button class='pad step-2'></button>
+      <button class='pad step-3'></button>
+      <button class='pad step-4'></button>
+      <button class='pad step-5'></button>
+      <button class='pad step-6'></button>
+      <button class='pad step-7'></button>
     </div>
   `
 
 const styles = new CSSStyleSheet()
 styles.replaceSync(`
   .pad {
+    border-radius: 5px;
     height: 100px;
-    width: 100px;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    transition: ease-in-out .1s;
+    width: 100px;
+  }
+  
+  .active {
+    background-color: #6c757d;
   }
 `)
 
@@ -29,17 +35,14 @@ export class GridElement extends HTMLElement {
 
     shadow.adoptedStyleSheets = [...shadow.adoptedStyleSheets, styles]
     shadow.innerHTML = gridTemplate()
-  }
 
-  connectedCallback() {
-    const btnGroup = this.shadowRoot.querySelectorAll('button.pad')
+    const btnGroup = shadow.querySelectorAll('button.pad')
     btnGroup.forEach((btn) => {
-      btn.addEventListener('click', this.handleButtonClick)
+      btn.addEventListener('click', () => this.handleButtonClick(btn))
     })
   }
 
-  // TODO: Get buttons to act as toggles when clicked.
-  handleButtonClick() {
-    console.log('Button Clicked!')
+  handleButtonClick(target) {
+    target.classList.toggle('active')
   }
 }
