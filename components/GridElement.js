@@ -32,8 +32,14 @@ export class GridElement extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log('Grid component added to page!')
+    const btnGroup = this.shadowRoot.querySelectorAll('button.pad')
+    btnGroup.forEach((btn) => {
+      btn.addEventListener('click', this.handleButtonClick)
+    })
   }
 
   // TODO: Get buttons to act as toggles when clicked.
+  handleButtonClick() {
+    console.log('Button Clicked!')
+  }
 }
