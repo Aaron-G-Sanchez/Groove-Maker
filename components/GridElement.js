@@ -1,5 +1,6 @@
-const gridTemplate = () =>
-  `
+// TODO: Increase button count to 16 for 4 bars of 4.
+const gridTemplate = () => {
+  return `
     <div class='grid-container'>
       <button class='pad step-0'></button>
       <button class='pad step-1'></button>
@@ -11,6 +12,7 @@ const gridTemplate = () =>
       <button class='pad step-7'></button>
     </div>
   `
+}
 
 const styles = new CSSStyleSheet()
 // TODO: Add hover styles to the pads.
