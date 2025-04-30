@@ -1,5 +1,6 @@
-const gridTemplate = () =>
-  `
+// TODO: Increase button count to 16 for 4 bars of 4.
+const gridTemplate = () => {
+  return `
     <div class='grid-container'>
       <button class='pad step-0'></button>
       <button class='pad step-1'></button>
@@ -11,8 +12,10 @@ const gridTemplate = () =>
       <button class='pad step-7'></button>
     </div>
   `
+}
 
 const styles = new CSSStyleSheet()
+// TODO: Add hover styles to the pads.
 styles.replaceSync(`
   .pad {
     border-radius: 5px;
@@ -22,7 +25,7 @@ styles.replaceSync(`
     transition: ease-in-out .1s;
     width: 100px;
   }
-  
+
   .active {
     background-color: #6c757d;
   }
@@ -33,7 +36,7 @@ export class GridElement extends HTMLElement {
     super()
     const shadow = this.attachShadow({ mode: 'open' })
 
-    shadow.adoptedStyleSheets = [...shadow.adoptedStyleSheets, styles]
+    shadow.adoptedStyleSheets = [styles]
     shadow.innerHTML = gridTemplate()
 
     const btnGroup = shadow.querySelectorAll('button.pad')
@@ -43,6 +46,7 @@ export class GridElement extends HTMLElement {
   }
 
   handleButtonClick(target) {
+    // TODO: Add active attribute instead of class.
     target.classList.toggle('active')
   }
 }
