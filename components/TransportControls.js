@@ -1,4 +1,8 @@
-import { PlayLoop, EndLoop } from '../shared/events.js'
+import {
+  PlayLoop,
+  EndLoop,
+  createChangeBeatLengthEvent
+} from '../shared/events.js'
 
 const transportControlsTemplate = () => {
   // TODO: Add [p] tag to hold the current count.
@@ -6,12 +10,15 @@ const transportControlsTemplate = () => {
     <div class='transport-controls-container'>
       <button class='play'>Play</button>
       <button class='stop'>Stop</button>
+      <select type='select' class='bar-length-select'>
+        <option value='4' selected>4</option>
+        <option value='8'>8</option>
+        <option value='16'>16</option>
+      </select>
     </div>
   `
 }
 
-// TODO: Create the counter transport that is triggered when
-// the play button is clicked.
 export class TransportControls extends HTMLElement {
   constructor() {
     super()
@@ -22,18 +29,28 @@ export class TransportControls extends HTMLElement {
 
   connectedCallback() {
     const playBtn = this.shadowRoot.querySelector('button.play')
-    playBtn.addEventListener('click', this.onPlayLoopBtnClicked)
+    playBtn.addEventListener('click', this._onPlayLoopBtnClicked)
 
     const stopBtn = this.shadowRoot.querySelector('button.stop')
-    stopBtn.addEventListener('click', this.onStopLoopBtnClicked)
+    stopBtn.addEventListener('click', this._onStopLoopBtnClicked)
+
+    const barCountSelect = this.shadowRoot.querySelector(
+      'select.bar-length-select'
+    )
+    barCountSelect.addEventListener('change', this._onChangeBeatLength)
   }
 
-  // Emits the [play-loop] event.
-  onPlayLoopBtnClicked() {
+  _onPlayLoopBtnClicked() {
     this.dispatchEvent(PlayLoop)
   }
 
-  onStopLoopBtnClicked() {
+  _onStopLoopBtnClicked() {
     this.dispatchEvent(EndLoop)
+  }
+
+  _onChangeBeatLength(e) {
+    const changeBeatLengthEvent = createChangeBeatLengthEvent(e.target.value)
+
+    this.dispatchEvent(changeBeatLengthEvent)
   }
 }

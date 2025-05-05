@@ -5,6 +5,11 @@ import { TransportControls } from './components/TransportControls.js'
 customElements.define('grid-element', GridElement)
 customElements.define('transport-controls', TransportControls)
 
+const root = document.querySelector('main.root')
+// TODO: Figure out how to pass step count into grid definition.
+const kickGrid = document.createElement('grid-element')
+root.appendChild(kickGrid)
+
 // TODO: Create a counter that loops through the step grid.
 let intervalId
 let sequenceLength = 8
@@ -21,6 +26,7 @@ const startLoop = () => {
   console.log(currentStep)
 }
 
+// TODO: Move to separate files.
 const endLoop = () => {
   console.log('ENDING LOOP')
   if (intervalId) {
@@ -42,5 +48,11 @@ document.addEventListener('play-loop', () => {
   console.log(currentStep)
 })
 
+// EVENT REGISTRATION
 // End the playback loop.
 document.addEventListener('end-loop', endLoop)
+
+// Handle length in beat change.
+document.addEventListener('change-beat-length', (e) => {
+  console.log(`update beat grid to ${e.detail.value} bars`)
+})
