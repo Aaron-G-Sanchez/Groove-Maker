@@ -1,15 +1,17 @@
-// TODO: Increase button count to 16 for 4 bars of 4.
+// TODO: Resize the pad buttons.
+// TODO: Add aria label for each step in the grid.
+// TODO: Make button/step count dynamic.
 const gridTemplate = () => {
   return `
     <div class='grid-container'>
-      <button class='pad step-0'></button>
-      <button class='pad step-1'></button>
-      <button class='pad step-2'></button>
-      <button class='pad step-3'></button>
-      <button class='pad step-4'></button>
-      <button class='pad step-5'></button>
-      <button class='pad step-6'></button>
-      <button class='pad step-7'></button>
+      <button class='pad'></button>
+      <button class='pad'></button>
+      <button class='pad'></button>
+      <button class='pad'></button>
+      <button class='pad'></button>
+      <button class='pad'></button>
+      <button class='pad'></button>
+      <button class='pad'></button>
     </div>
   `
 }
@@ -17,13 +19,19 @@ const gridTemplate = () => {
 const styles = new CSSStyleSheet()
 // TODO: Add hover styles to the pads.
 styles.replaceSync(`
+  .grid-container {
+    display: flex; 
+    gap: 5px;
+  }
+
   .pad {
-    border-radius: 5px;
-    height: 100px;
+    border-width: .5px;
+    border-radius: 3px;
+    height: 25px;
     margin: 0;
     padding: 0;
     transition: ease-in-out .1s;
-    width: 100px;
+    width: 18px;
   }
 
   .active {
@@ -36,7 +44,7 @@ export class GridElement extends HTMLElement {
     super()
     const shadow = this.attachShadow({ mode: 'open' })
 
-    shadow.adoptedStyleSheets = [styles]
+    shadow.adoptedStyleSheets = [...shadow.adoptedStyleSheets, styles]
     shadow.innerHTML = gridTemplate()
 
     const btnGroup = shadow.querySelectorAll('button.pad')
