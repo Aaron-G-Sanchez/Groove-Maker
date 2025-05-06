@@ -49,11 +49,12 @@ export class GridElement extends HTMLElement {
 
     const btnGroup = shadow.querySelectorAll('button.pad')
     btnGroup.forEach((btn) => {
-      btn.addEventListener('click', () => this.handleButtonClick(btn))
+      btn.addEventListener('click', () => this._handleButtonClick(btn))
     })
   }
 
-  handleButtonClick(target) {
+  // TODO: Rename to be more specific to pads.
+  _handleButtonClick(target) {
     // TODO: Add active attribute instead of class.
     target.classList.toggle('active')
   }

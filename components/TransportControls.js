@@ -1,7 +1,7 @@
 import {
   PlayLoop,
   EndLoop,
-  createChangeBeatLengthEvent
+  createChangeSequenceLengthEvent
 } from '../shared/events.js'
 
 const transportControlsTemplate = () => {
@@ -10,7 +10,7 @@ const transportControlsTemplate = () => {
     <div class='transport-controls-container'>
       <button class='play'>Play</button>
       <button class='stop'>Stop</button>
-      <select type='select' class='bar-length-select'>
+      <select type='select' class='sequence-length-select'>
         <option value='4' selected>4</option>
         <option value='8'>8</option>
         <option value='16'>16</option>
@@ -34,10 +34,13 @@ export class TransportControls extends HTMLElement {
     const stopBtn = this.shadowRoot.querySelector('button.stop')
     stopBtn.addEventListener('click', this._onStopLoopBtnClicked)
 
-    const barCountSelect = this.shadowRoot.querySelector(
-      'select.bar-length-select'
+    const sequenceLengthSelect = this.shadowRoot.querySelector(
+      'select.sequence-length-select'
     )
-    barCountSelect.addEventListener('change', this._onChangeBeatLength)
+    sequenceLengthSelect.addEventListener(
+      'change',
+      this._onChangeSequenceLength
+    )
   }
 
   _onPlayLoopBtnClicked() {
@@ -48,9 +51,11 @@ export class TransportControls extends HTMLElement {
     this.dispatchEvent(EndLoop)
   }
 
-  _onChangeBeatLength(e) {
-    const changeBeatLengthEvent = createChangeBeatLengthEvent(e.target.value)
+  _onChangeSequenceLength(e) {
+    const changeSequenceLengthEvent = createChangeSequenceLengthEvent(
+      e.target.value
+    )
 
-    this.dispatchEvent(changeBeatLengthEvent)
+    this.dispatchEvent(changeSequenceLengthEvent)
   }
 }

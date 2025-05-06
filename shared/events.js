@@ -19,8 +19,8 @@ export const EndLoop = new CustomEvent('end-loop', {
 /**
  * Create a custom event to handle a change in beat length.
  */
-export const createChangeBeatLengthEvent = (value) => {
-  return new CustomEvent('change-beat-length', {
+export const createChangeSequenceLengthEvent = (value) => {
+  return new CustomEvent('change-sequence-length', {
     bubbles: true,
     composed: true,
     cancelable: true,
