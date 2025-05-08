@@ -1,19 +1,18 @@
 // TODO: Resize the pad buttons.
 // TODO: Add aria label for each step in the grid.
 // TODO: Make button/step count dynamic.
-const gridTemplate = () => {
-  return `
-    <div class='grid-container'>
-      <button class='pad'></button>
-      <button class='pad'></button>
-      <button class='pad'></button>
-      <button class='pad'></button>
-      <button class='pad'></button>
-      <button class='pad'></button>
-      <button class='pad'></button>
-      <button class='pad'></button>
-    </div>
-  `
+const gridTemplate = (sequenceLength = 4) => {
+  const template = document.createElement('div')
+  template.classList.add('grid-container')
+
+  for (let i = 0; i < sequenceLength * 4; i++) {
+    const step = document.createElement('button')
+    step.classList.add('pad')
+
+    template.appendChild(step)
+  }
+
+  return template
 }
 
 const styles = new CSSStyleSheet()
@@ -45,7 +44,7 @@ export class GridElement extends HTMLElement {
     const shadow = this.attachShadow({ mode: 'open' })
 
     shadow.adoptedStyleSheets = [...shadow.adoptedStyleSheets, styles]
-    shadow.innerHTML = gridTemplate()
+    shadow.appendChild(gridTemplate())
 
     const btnGroup = shadow.querySelectorAll('button.pad')
     btnGroup.forEach((btn) => {
