@@ -29,11 +29,18 @@ styles.replaceSync(`
     height: 25px;
     margin: 0;
     padding: 0;
-    transition: ease-in-out .1s;
+    transition: ease-in .2s;
     width: 18px;
+    }
+    
+  .pad:nth-child(8n + 5),
+  .pad:nth-child(8n + 6),
+  .pad:nth-child(8n + 7),
+  .pad:nth-child(8n + 8) {
+    background-color: #adb5bd;
   }
 
-  .active {
+  .pad.active {
     background-color: #6c757d;
   }
 `)
@@ -48,13 +55,12 @@ export class GridElement extends HTMLElement {
 
     const btnGroup = shadow.querySelectorAll('button.pad')
     btnGroup.forEach((btn) => {
-      btn.addEventListener('click', () => this._handleButtonClick(btn))
+      btn.addEventListener('click', () => this._handleStepPadClick(btn))
     })
   }
 
-  // TODO: Rename to be more specific to pads.
-  _handleButtonClick(target) {
-    // TODO: Add active attribute instead of class.
+  _handleStepPadClick(target) {
+    // TODO: Add active attribute as well as class.
     target.classList.toggle('active')
   }
 }
