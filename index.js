@@ -53,6 +53,6 @@ document.addEventListener('play-loop', () => {
 document.addEventListener('end-loop', endLoop)
 
 // Handle length in beat change.
-document.addEventListener('change-beat-length', (e) => {
+document.addEventListener('change-sequence-length', (e) => {
   console.log(`update beat grid to ${e.detail.value} bars`)
 })
